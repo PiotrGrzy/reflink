@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome</h1>
-      <p>{refLink ? refLink : null}</p>
+      <p>Reflink: {refLink ? refLink : 'No reflink in storage'}</p>
     </div>
   );
 };

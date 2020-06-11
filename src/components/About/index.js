@@ -4,8 +4,8 @@ const About = () => {
 
   return (
     <div>
-      <h1>About</h1>
-      <p>{refLink ? refLink : null}</p>
+      <h1>About:</h1>
+      <p>Reflink: {refLink ? refLink : 'No reflink in storage'}</p>
     </div>
   );
 };

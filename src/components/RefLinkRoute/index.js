@@ -2,17 +2,19 @@ import React from 'react';
 import { useLocation, Route, Redirect } from 'react-router-dom';
 
 const RefLinkRoute = (props) => {
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
+  const { pathname, search } = useLocation();
+  const allURLParams = new URLSearchParams(search);
 
-  if (params.has('ref')) {
-    const refLink = params.get('ref');
+  if (allURLParams.has('ref')) {
+    const refLink = allURLParams.get('ref');
+
     localStorage.setItem('reflink', JSON.stringify(refLink));
-    const [first, last] = location.search.split('?');
-    const reFilterRef = /&ref(\=[^&]*)?(?=&|$)|^ref(\=[^&]*)?(&|$)/;
 
-    const paramsWithoutRef = last.replace(reFilterRef, '');
-    return <Redirect to={location.pathname + '?' + paramsWithoutRef} />;
+    const reFilterRef = /&ref(\=[^&]*)?(?=&|$)|^ref(\=[^&]*)?(&|$)/; // finds ref=* param in string
+
+    const paramsWithoutRef = search.substring(1).replace(reFilterRef, '');
+
+    return <Redirect to={pathname + '?' + paramsWithoutRef} />;
   }
   return <Route {...props} />;
 };
