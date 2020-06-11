@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
 
 import RefLinkRoute from './components/RefLinkRoute';
 import Home from './components/Home';
